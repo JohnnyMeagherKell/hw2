@@ -70,11 +70,28 @@
 # Delete existing data, so you'll start fresh each time this script is run.
 # Use `Model.destroy_all` code.
 # TODO!
-
+#Model.destroy_all
+#Studio.destroy_all
+#Movie.destroy_all
+#Actor.destroy_all
+#Role.destroy_all
 # Generate models and tables, according to the domain model.
+#rails generate model Studio
+
 # TODO!
 
 # Insert data into the database that reflects the sample data shown above.
+puts "There are #{Studio.all.count} studios"
+
+new_studio = Studio.new
+puts new_studio.inspect
+
+new_studio["name"] = "Warner Bros"
+new_studio.save
+
+puts "There are #{Studio.all.count} studios"
+
+
 # Do not use hard-coded foreign key IDs.
 # TODO!
 
