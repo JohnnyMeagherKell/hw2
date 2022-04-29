@@ -71,10 +71,10 @@
 # Use `Model.destroy_all` code.
 # TODO!
 #Model.destroy_all
-#Studio.destroy_all
-#Movie.destroy_all
-#Actor.destroy_all
-#Role.destroy_all
+Studio.destroy_all
+Movie.destroy_all
+Actor.destroy_all
+Role.destroy_all
 # Generate models and tables, according to the domain model.
 #rails generate model Studio
 
@@ -89,8 +89,102 @@ puts new_studio.inspect
 new_studio["name"] = "Warner Bros"
 new_studio.save
 
+warner_bros = Studio.find_by({"name" => "Warner Bros"})
+puts warner_bros.inspect
+
+movie = Movie.new
+movie["name"] = "Batman Begins" 
+movie["year_released"] = 2005
+movie["rated"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+
+movie = Movie.new
+movie["name"] = "The Dark Knight" 
+movie["year_released"] = 2008
+movie["rated"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+
+movie = Movie.new
+movie["name"] = "The Dark Knight Rises" 
+movie["year_released"] = 2012
+movie["rated"] = "PG-13"
+movie["studio_id"] = warner_bros["id"]
+movie.save
+
+actor = Actor.new
+actor["name"] = "Christian Bale" 
+actor.save
+
+actor = Actor.new
+actor["name"] = "Michael Caine" 
+actor.save
+
+actor = Actor.new
+actor["name"] = "Liam Neeson" 
+actor.save
+
+actor = Actor.new
+actor["name"] = "Katie Holmes" 
+actor.save
+
+actor = Actor.new
+actor["name"] = "Gary Oldman" 
+actor.save
+
+actor = Actor.new
+actor["name"] = "Heath Ledger" 
+actor.save
+
+actor = Actor.new
+actor["name"] = "Aaron Eckhart" 
+actor.save
+
+actor = Actor.new
+actor["name"] = "Maggie Gyllenhaal" 
+actor.save
+
+
+actor = Actor.new
+actor["name"] = "Tom Hardy" 
+actor.save
+
+
+actor = Actor.new
+actor["name"] = "Joseph Gordon-Levitt" 
+actor.save
+
+
+actor = Actor.new
+actor["name"] = "Anne Hathaway" 
+actor.save
+
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 1, "Bruce Wayne");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 2, "Alfred");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 3, "Ra's Al Ghul");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 4, "Rachel Dawes");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (1, 5, "Commissioner Gordon");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 1, "Bruce Wayne");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 6, "Joker");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 7, "Harvey Dent");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 2, "Alfred");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (2, 8, "Rachel Dawes");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 1, "Bruce Wayne");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 5, "Commissioner Gordon");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 9, "Bane");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 10, "John Blake");
+# INSERT INTO roles (movie_id, actor_id, character_name) VALUES (3, 11, "Selina Kyle");
+
+
+
+puts "There are #{Movie.all.count} movies"
+
 puts "There are #{Studio.all.count} studios"
 
+puts "There are #{Actor.all.count} actors"
 
 # Do not use hard-coded foreign key IDs.
 # TODO!
