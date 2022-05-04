@@ -78,10 +78,7 @@ Role.destroy_all
 # Generate models and tables, according to the domain model.
 
 
-# TODO!
-
 # Insert data into the database that reflects the sample data shown above.
-puts "There are #{Studio.all.count} studios"
 
 new_studio = Studio.new
 new_studio["name"] = "Warner Bros"
@@ -112,12 +109,9 @@ movie["rated"] = "PG-13"
 movie["studio_id"] = warner_bros["id"]
 movie.save
 
-
-
 actor = Actor.new
 actor["name"] = "Christian Bale"
 actor.save
-
 
 actor = Actor.new
 actor["name"] = "Michael Caine" 
@@ -155,16 +149,12 @@ actor = Actor.new
 actor["name"] = "Joseph Gordon-Levitt" 
 actor.save
 
-
 actor = Actor.new
 actor["name"] = "Anne Hathaway" 
 actor.save
 
-
 batman_begins = Movie.find_by({"name" => "Batman Begins"})
-
 the_dark_knight = Movie.find_by({"name" => "The Dark Knight"})
-
 the_dark_knight_rises = Movie.find_by({"name" => "The Dark Knight Rises"})
 
 christian_bale = Actor.find_by({"name" => "Christian Bale"})
@@ -185,15 +175,8 @@ role["actor_id"] = christian_bale["id"]
 role["charater_name"] = "Bruce Wayne" 
 role.save
 
-
 role = Role.new
 role["movie_id"] = batman_begins["id"]
-role["actor_id"] = michael_caine["id"]
-role["charater_name"] = "Alfred" 
-role.save
-
-role = Role.new
-role["movie_id"] = the_dark_knight["id"]
 role["actor_id"] = michael_caine["id"]
 role["charater_name"] = "Alfred" 
 role.save
@@ -203,7 +186,6 @@ role["movie_id"] = batman_begins["id"]
 role["actor_id"] = liam_neeson["id"]
 role["charater_name"] = "Ra's Al Ghul" 
 role.save
-
 
 role = Role.new
 role["movie_id"] = batman_begins["id"]
@@ -217,21 +199,8 @@ role["actor_id"] = gary_oldman["id"]
 role["charater_name"] = "Commissioner Gordon" 
 role.save
 
-
-role = Role.new
-role["movie_id"] = the_dark_knight_rises["id"]
-role["actor_id"] = gary_oldman["id"]
-role["charater_name"] = "Commissioner Gordon" 
-role.save
-
 role = Role.new
 role["movie_id"] = the_dark_knight["id"]
-role["actor_id"] = christian_bale["id"]
-role["charater_name"] = "Bruce Wayne" 
-role.save
-
-role = Role.new
-role["movie_id"] = the_dark_knight_rises["id"]
 role["actor_id"] = christian_bale["id"]
 role["charater_name"] = "Bruce Wayne" 
 role.save
@@ -242,13 +211,17 @@ role["actor_id"] = heath_ledger["id"]
 role["charater_name"] = "Joker" 
 role.save
 
-
 role = Role.new
 role["movie_id"] = the_dark_knight["id"]
 role["actor_id"] = aaron_eckhart["id"]
 role["charater_name"] = "Harvey Dent" 
 role.save
 
+role = Role.new
+role["movie_id"] = the_dark_knight["id"]
+role["actor_id"] = michael_caine["id"]
+role["charater_name"] = "Alfred" 
+role.save
 
 role = Role.new
 role["movie_id"] = the_dark_knight["id"]
@@ -256,6 +229,17 @@ role["actor_id"] = maggie_gyllenhaal["id"]
 role["charater_name"] = "Rachel Dawes" 
 role.save
 
+role = Role.new
+role["movie_id"] = the_dark_knight_rises["id"]
+role["actor_id"] = christian_bale["id"]
+role["charater_name"] = "Bruce Wayne" 
+role.save
+
+role = Role.new
+role["movie_id"] = the_dark_knight_rises["id"]
+role["actor_id"] = gary_oldman["id"]
+role["charater_name"] = "Commissioner Gordon" 
+role.save
 
 role = Role.new
 role["movie_id"] = the_dark_knight_rises["id"]
@@ -263,13 +247,11 @@ role["actor_id"] = tom_hardy["id"]
 role["charater_name"] = "Bane" 
 role.save
 
-
 role = Role.new
 role["movie_id"] = the_dark_knight_rises["id"]
 role["actor_id"] = joseph_gordon_levitt["id"]
 role["charater_name"] = "John Blake"
 role.save
-
 
 role = Role.new
 role["movie_id"] = the_dark_knight_rises["id"]
@@ -277,9 +259,7 @@ role["actor_id"] = anne_hathaway["id"]
 role["charater_name"] = "Selina Kyle"
 role.save
 
-
 # Do not use hard-coded foreign key IDs.
-# TODO!
 
 # Prints a header for the movies output
 puts "Movies"
@@ -290,7 +270,7 @@ puts ""
 
 movie_list = Movie.where({ "studio_id" => warner_bros["id"] })
 
-for films in movie_list
+for films in movie_list.sort
     film_title = films["name"].inspect
     year_released = films["year_released"].inspect
     rating = films["rated"].inspect
@@ -303,7 +283,7 @@ puts ""
 puts "Top Cast"
 puts "========"
 puts ""
-
+# Query the cast data and loop through the results to display the cast output for each movie.
 cast_list = Role.all
 
 for character in cast_list
@@ -312,5 +292,5 @@ for character in cast_list
     role_played = character["charater_name"].inspect
     puts "#{movie_title} #{acted_by} #{role_played}"
 end
-# Query the cast data and loop through the results to display the cast output for each movie.
-# TODO!
+
+
