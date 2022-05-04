@@ -76,7 +76,7 @@ Movie.destroy_all
 Actor.destroy_all
 Role.destroy_all
 # Generate models and tables, according to the domain model.
-#rails generate model Studio
+
 
 # TODO!
 
@@ -84,13 +84,10 @@ Role.destroy_all
 puts "There are #{Studio.all.count} studios"
 
 new_studio = Studio.new
-puts new_studio.inspect
-
 new_studio["name"] = "Warner Bros"
 new_studio.save
 
 warner_bros = Studio.find_by({"name" => "Warner Bros"})
-puts warner_bros.inspect
 
 movie = Movie.new
 movie["name"] = "Batman Begins" 
@@ -165,13 +162,10 @@ actor.save
 
 
 batman_begins = Movie.find_by({"name" => "Batman Begins"})
-#puts batman_begins.inspect
 
 the_dark_knight = Movie.find_by({"name" => "The Dark Knight"})
-#puts the_dark_knight.inspect
 
 the_dark_knight_rises = Movie.find_by({"name" => "The Dark Knight Rises"})
-#puts the_dark_knight_rises.inspect
 
 christian_bale = Actor.find_by({"name" => "Christian Bale"})
 michael_caine = Actor.find_by({"name" => "Michael Caine"})
@@ -284,22 +278,6 @@ role["charater_name"] = "Selina Kyle"
 role.save
 
 
-puts Actor.all.inspect
-puts Movie.all
-puts Studio.all
-puts Role.all.inspect
-
-
-
-
-puts "There are #{Movie.all.count} movies"
-
-puts "There are #{Studio.all.count} studios"
-
-puts "There are #{Actor.all.count} actors"
-
-puts "There are #{Role.all.count} roles"
-
 # Do not use hard-coded foreign key IDs.
 # TODO!
 
@@ -313,16 +291,12 @@ puts ""
 movie_list = Movie.where({ "studio_id" => warner_bros["id"] })
 
 for films in movie_list
-    whosy = films["name"].inspect
-    released = films["year_released"].inspect
+    film_title = films["name"].inspect
+    year_released = films["year_released"].inspect
     rating = films["rated"].inspect
     study = Studio.find_by({"id" => films["studio_id"]}).name.inspect
-    puts "#{whosy} #{released} #{rating} #{study}"
+    puts "#{film_title} #{year_released} #{rating} #{study}"
 end
-
-
-
-# TODO!
 
 # Prints a header for the cast output
 puts ""
@@ -332,11 +306,11 @@ puts ""
 
 cast_list = Role.all
 
-for roller in cast_list
-    filmy = Movie.find_by({"id" => roller["movie_id"]}).name.inspect
-    acty = Actor.find_by({"id" => roller["actor_id"]}).name.inspect
-    rolly = roller["charater_name"].inspect
-    puts "#{filmy} #{acty} #{rolly}"
+for character in cast_list
+    movie_title = Movie.find_by({"id" => character["movie_id"]}).name.inspect
+    acted_by = Actor.find_by({"id" => character["actor_id"]}).name.inspect
+    role_played = character["charater_name"].inspect
+    puts "#{movie_title} #{acted_by} #{role_played}"
 end
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
